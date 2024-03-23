@@ -11,7 +11,7 @@ on:
     branches: [ "latest" ]
 
 env:
-  REGISTRY_IMAGE: cyberpoison/o11-ott-streamer
+  REGISTRY_IMAGE: cyberpoison/xmltv-docker
 
 jobs:
   build:
