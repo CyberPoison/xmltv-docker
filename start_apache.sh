@@ -1,5 +1,6 @@
 #!/bin/bash
 
+which crond
 # Define folder name
 folder_name="/home/web-ui"
 
@@ -20,7 +21,7 @@ printf "all\n" | "$tv_grab_command" --configure
 "$tv_grab_command" --days $days --output $folder_name/xmltv.xml
 
 # Add cron job to run tv_grab_pt_vodafone --days 4 with output to /home/xmltv.xml every 3 days at midnight
-(crontab -l ; echo "0 0 */3 * * $tv_grab_command --days $days --output $folder_name/xmltv.xml") | crontab -
+(crontab -l ; echo "45 23 */2 * * $tv_grab_command --days $days --output $folder_name/xmltv.xml") | crontab -
 
 # Check if .htpasswd file already exists
 if [ ! -f "$htpasswd_file" ]; then
@@ -46,5 +47,6 @@ echo "Password is: $htpasswd_password"
 echo "web .xml file: http://$htpasswd_username:$htpasswd_password@localhost/xmltv.xml"
 
 # Start Apache2 in the foreground
+crond -f &
 httpd -DFOREGROUND
 
